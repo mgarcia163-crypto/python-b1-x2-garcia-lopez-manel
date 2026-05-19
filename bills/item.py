@@ -58,7 +58,9 @@ class Product:
 
     def calculate_total(self) -> float:
         # Write here your code
-        pass
+        subtotal = self.price * self.quantity
+        total = subtotal + self.calculate_total_taxes(subtotal)
+        return float(total)
 
     def __eq__(self, another):
         # Do not change this method
@@ -79,12 +81,21 @@ class Product:
 class Bill:
     def __init__(self, bill_id: str, sale_date: datetime, seller: Seller, buyer: Buyer, products: list[Product]):
         # Write here your code
+        self.bill_id: str = bill_id
+        self.sale_date: datetime = sale_date
+        self.seller: 'Seller' = seller
+        self.buyer: 'Buyer' = buyer
+        self.products: list['Product'] = products
         pass
+        
        
 
     def calculate_total(self) -> float:
         # Write here your code
-        pass
+        total_factura = 0.0
+        for producto in self.products:
+            total_factura += producto.calculate_total()
+        return float(total_factura)
 
     def print(self):
         # Do not change this method
