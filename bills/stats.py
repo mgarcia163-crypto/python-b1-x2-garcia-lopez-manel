@@ -1,4 +1,5 @@
 # Write your imports here
+from collections import Counter
 
 
 
@@ -15,7 +16,14 @@ class Statistics:
 
     def find_top_sell_product(self) -> (Product, int):
         # Write here your code
-        pass
+        product_counts = Counter()
+        for bill in bills:
+            for product in bill.products:
+                product_counts[product] += 1
+        if not product_counts:
+            return (None, 0)
+        top_product, frequency = product_counts.most_common(1)[0]
+        return (top_product, frequency)
 
     def find_top_two_sellers(self) -> list:
         # Write here your code
