@@ -14,24 +14,47 @@ class TaxType(Enum):
 
 class Tax:
     # Write the parameters in the next line
-    def __init__():
+    def __init__(self, tax_id: str, tax_type: TaxType, percentage: float):
         # Write here your code
+        self.tax_id = tax_id
+        self.tax_type = tax_type
+        self.percentage = percentage
         pass
 
 
 class Product:
      # Write the parameters in the next line
-    def __init__():
+    def __init__(self, product_id: str, name: str, expiration_date: datetime, bar_code: str, quantity: int, price: float, taxes: list['Tax']):
         # Write here your code
+        self.product_id = product_id
+        self.name = name
+        self.expiration_date = expiration_date
+        self.bar_code = bar_code
+        self.quantity = quantity
+        self.price = price
+        self.taxes = taxes
         pass        
 
     def calculate_tax(self, tax: Tax) -> float:
         # Write here your code
-        pass
+        ISD_FACTOR = 0.25
+        tax_found = None
+        for t in self.taxes:
+            if t.tax_type == tax.tax_type:
+                tax_found = t
+                break
+        if not tax_found:
+            return 0.0
+        
 
     def calculate_total_taxes(self) -> float:
         # Write here your code
-        pass
+        total_acumulado = 0.0
+        for tax in self.taxes:
+            valor_impuesto = self.calculate_tax(tax)
+            total_acumulado += valor_impuesto
+        return float(total_acumulado)
+    
 
     def calculate_total(self) -> float:
         # Write here your code
