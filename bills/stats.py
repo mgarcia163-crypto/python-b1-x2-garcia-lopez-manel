@@ -1,6 +1,9 @@
 # Write your imports here
 from collections import Counter
 from enum import Enum
+from bills.bill import Bill 
+from bills.item import Product
+from bills.entity import Seller, Buyer
 
 
 
