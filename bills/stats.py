@@ -18,7 +18,7 @@ class Statistics:
         # Do not change this method
         self.bills = bills
 
-    def find_top_sell_product(self) -> (Product, int):
+    def find_top_sell_product(bills: list[Bill]) -> tuple[Product, int]:
         # Write here your code
         product_counts = Counter()
         for bill in bills:
@@ -29,7 +29,7 @@ class Statistics:
         top_product, frequency = product_counts.most_common(1)[0]
         return (top_product, frequency)
 
-    def find_top_two_sellers(self) -> list:
+    def find_top_two_sellers (bills: list[Bill]) -> list[Seller]:
         # Write here your code
         seller_sales = {}
         for bill in bills:
@@ -43,7 +43,7 @@ class Statistics:
         return sorted_sellers[:2]
         
 
-    def find_buyer_lowest_total_purchases(self) -> (Buyer, float):
+    def find_buyer_lowest_total_purchases(bills: list[Bill]) -> tuple[Buyer, float]:
         # Write here your code
         if not bills:
             return (None, 0.0)
@@ -60,7 +60,7 @@ class Statistics:
         return (lowest_buyer, float(lowest_total))
     
 
-    def order_products_by_tax(self, order_type: OrderType) -> tuple:
+    def order_products_by_tax(bills: list[Bill], order_type: OrderType) -> list[tuple[Product, float]]:
         # Write here your code
         product_taxes = {}
         for bill in bills:
